@@ -2,6 +2,7 @@ FROM maven:3.5-jdk-8-alpine AS build
 
 WORKDIR /code
 
+COPY src/settings.xml ~/.m2
 COPY src/pom.xml /code/pom.xml
 RUN ["mvn", "dependency:resolve"]
 RUN ["mvn", "verify"]
