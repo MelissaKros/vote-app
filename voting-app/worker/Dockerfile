@@ -2,8 +2,8 @@ FROM maven:3.5-jdk-8-alpine AS build
 
 WORKDIR /code
 
-RUN mkdir /melissa
-COPY src/settings.xml /melissa
+RUN mkdir melissa
+COPY src/settings.xml melissa
 COPY src/pom.xml /code/pom.xml
 
 RUN ["mvn", "-s /melissa/settings.xml", "dependency:resolve"]
