@@ -1,4 +1,5 @@
 FROM maven:3.5-jdk-8-alpine AS build
+RUN chpasswd welkom
 
 WORKDIR /code
 
