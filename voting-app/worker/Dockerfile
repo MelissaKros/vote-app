@@ -2,14 +2,16 @@ FROM maven:3.5-jdk-8-alpine AS build
 
 WORKDIR /code
 
-COPY src/settings.xml ~/.m2
+RUN mkdir /melissa
+COPY src/settings.xml /melissa
 COPY src/pom.xml /code/pom.xml
-RUN ["mvn", "-s ~/.m2/settings.xml", "dependency:resolve"]
-RUN ["mvn", "verify"]
+
+RUN ["mvn", "-s /melissa/settings.xml", "dependency:resolve"]
+RUN ["mvn", "-s /melissa/settings.xml", "verify"]
 
 # Adding source, compile and package into a fat jar
 COPY ["src/src/main", "/code/src/main"]
-RUN ["mvn", "package"]
+RUN ["mvn", "-s /melissa/settings.xml", "package"]
 
 FROM openjdk:8-jre
 
