@@ -5,12 +5,12 @@ WORKDIR /code
 COPY src/settings.xml .
 COPY src/pom.xml /code/pom.xml
 
-RUN ["mvn", "-s settings.xml", "dependency:resolve"]
-RUN ["mvn", "-s settings.xml", "verify"]
+RUN ["mvn", "-ssettings.xml", "dependency:resolve"]
+RUN ["mvn", "-ssettings.xml", "verify"]
 
 # Adding source, compile and package into a fat jar
 COPY ["src/src/main", "/code/src/main"]
-RUN ["mvn", "-s settings.xml", "package"]
+RUN ["mvn", "-ssettings.xml", "package"]
 
 FROM openjdk:8-jre
 
