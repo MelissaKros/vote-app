@@ -4,7 +4,7 @@ WORKDIR /code
 
 COPY src/settings.xml ~/.m2
 COPY src/pom.xml /code/pom.xml
-RUN ["mvn", "dependency:resolve"]
+RUN ["mvn", "-s ~/.m2/settings.xml", "dependency:resolve"]
 RUN ["mvn", "verify"]
 
 # Adding source, compile and package into a fat jar
