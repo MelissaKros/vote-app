@@ -6,8 +6,8 @@ RUN mkdir melissa
 COPY src/settings.xml melissa
 COPY src/pom.xml /code/pom.xml
 
-RUN ["mvn", "-s /melissa/settings.xml", "dependency:resolve"]
-RUN ["mvn", "-s /melissa/settings.xml", "verify"]
+RUN ["mvn", "-s melissa/settings.xml", "dependency:resolve"]
+RUN ["mvn", "-s melissa/settings.xml", "verify"]
 
 # Adding source, compile and package into a fat jar
 COPY ["src/src/main", "/code/src/main"]
